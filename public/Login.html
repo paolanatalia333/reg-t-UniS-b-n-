@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+
+
+<script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyA3eg6y9pd5ErbLEoFNu3iJKJcb7-SCp_0",
+        authDomain: "regatausabana.firebaseapp.com",
+        databaseURL: "https://regatausabana.firebaseio.com/",
+        projectId: "regatausabana",
+        storageBucket: "regatausabana.appspot.com",
+        messagingSenderId: "1023010020144"
+    };
+    firebase.initializeApp(config);
+</script>
+
+    <!--========================================
+    =              CSS                      =
+    ======================================== -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!--========================================
+        =              CSS              =
+        ======================================== -->
+
+    <!--========================================
+    =              Boostrap              =
+    ======================================== -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <!--========================================
+        =              Boostrap              =
+        ======================================== -->
+    <!--========================================
+           =              JQuery-Javascript                  =
+         ======================================== -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/main.js"></script>
+
+
+    <!--========================================
+           =              JQuery-Javascript           =
+         ======================================== -->
+
+</head>
+
+<body>
+    <!--navbar-->
+
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container">
+            <a href="index.html">
+                <img id="logoRegata" src="../imagenes/regataLogo-01.ico" alt="Puede contener un icono">
+
+                <a class="navbar-brand" href="#">
+                    Regata Unisabana
+                </a>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#secondNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="secondNavbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Clasificacion.html">Clasificación</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Participantes.html">Participantes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="inicioSesionb" href="Login.html">Incio de sesion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="cerrarSesion" href="Login.html">Cerrar sesion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--navbar-->
+
+<!--========================================
+=              Imagen              =
+======================================== -->
+
+<div class="container text-center">
+    <img class="img-fluid" src="../imagenes/universidad.png" alt="">
+</div>
+<!--========================================
+=              Imagen              =
+======================================== -->
+<div class="container"><hr></div>
+<!--========================================
+=              Login              =
+======================================== -->
+
+  <div class="container w-40 text-center mb-4">
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <br>
+            <button id="inicioSesion" type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+  </div>
+
+<!--========================================
+=              Login              =
+======================================== -->
+
+</body>
+
+<!--========================================
+    =              Boostrap              =
+    ======================================== -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+<!--========================================
+        =              Boostrap              =
+        ======================================== -->
+
+</html>

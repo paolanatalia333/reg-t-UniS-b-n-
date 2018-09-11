@@ -1,0 +1,54 @@
+#logoRegata,#logoUsabana{
+    width: 85px;
+    height: 85px;
+    cursor: pointer;
+}
+#videoindex{
+    position: fixed;
+    height:100%;
+    width: 100%;
+}
+#contenido{
+    position: relative;
+    margin-top: 3%;
+}
+#banner{
+    opacity: 0;
+    background-image: url("../imagenes/fondo.jpg");
+    border: solid 1px black;
+    height: 14%;
+    width: 100%;
+    margin: auto;
+}
+#titulo{
+    font-style: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: aliceblue;
+    font-size: 3vw;
+}
+#bannerposiciones{
+    background-color: aliceblue;
+    margin-top: 5vw;
+    opacity:0.8 ;
+    width: 75%;
+}
+#textoposiciones{
+    font-size: 48px;
+    font-weight: 700px;
+}
+
+#Agradecimientos{
+    background-color: aliceblue;
+    opacity:0.8 ;
+}
+#navegacion{
+    width: 100%;
+}
+#podium{
+height: 90% ;
+width: 90%;
+margin-bottom: -4vw;
+}
+#cerrarSesion{
+    display: none;
+}
