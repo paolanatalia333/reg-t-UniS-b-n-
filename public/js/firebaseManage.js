@@ -1,55 +1,15 @@
 $(document).ready(function () {
 
 
-    var data = firebase.database().ref("/Teams");
-    var ref = firebase.database().ref().child("Teams");
-    var db = ref.orderByChild("Tiempo");
-    var dataPosition;
-    var dataPodium;
+    var data = firebase.database().ref("/teams");
+    //Detecta un registro nuevo en la base de datos y recarga la tabla
+    data.on('child_added', function (snapshot) {
+        buildTabla(snapshot.val().name, snapshot.val().tiempo);
+    });
 
-    function renderPosition(){
-        data.on("value", snap =>{
-            var equipo = snap.child("Name").val();
-            var partida = snap.child("StartTime").val();
-            var llegada = snap.child("FinishTime").val();
-            var puntajeTematico = snap.child("PuntajeTematico").val();
-            var puntajeTiempo = snap.child("PuntajeTematico").val();
-            var penalizaciones = snap.child("Penalizaciones").val();
-            var total = snap.child("Total").val();
-
-            $("#table_body").append("<tr><td>"+equipo+"</td><td>"+partida+"</td><td>"+llegada+"</td><td>"+puntajeTematico+"</td><td>"+puntajeTiempo+"</td><td>"+penalizaciones+"</td><td>"+total+"</td></tr>");
-        });
+    function buildTabla(nombre, tiempo) {
+        //Mismos tr que en la tabla: #tablaPosiciones
+        $("#tablaPosiciones").append("<tr><td>" + "1" + "</td><td>" + nombre + "</td> <td>" + "--" + "</td><td>" + tiempo + "</td><td> 0 </td><td>" + "0" + "</td><td>" + "0" + "</td><td>" + "0" + "</td></tr>");
     }
-    function renderPodium(snap){
-        var equipo = snap.child("Name").val();
-        var partida = snap.child("StartTime").val();
-        var llegada = snap.child("FinishTime").val();
-        var puntajeTematico = snap.child("PuntajeTematico").val();
-        var puntajeTiempo = snap.child("PuntajeTematico").val();
-        var penalizaciones = snap.child("Penalizaciones").val();
-        var total = snap.child("Total").val();
-
-        $("#table_pod").append("<tr><td>"+equipo+"</td><td>"+partida+"</td><td>"+llegada+"</td><td>"+puntajeTematico+"</td><td>"+puntajeTiempo+"</td><td>"+penalizaciones+"</td><td>"+total+"</td></tr>");
-    }
-
-
-    ref.on("child_added", snap => {
-        renderPosition(snap);
-    });
-
-    ref.on("child_changed", snap => {
-        $('#table_body tr').remove();
-        renderPosition(snap);
-    });
-    db.on("child_added", snap => {
-        renderPodium(snap);
-    });
-    db.on("child_changed", snap =>{
-       $('#table_pod tr').remove();
-        renderPodium(snap);
-    });
-
-
-
 
 });

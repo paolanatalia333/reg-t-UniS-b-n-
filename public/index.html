@@ -2,30 +2,29 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Welcome to Firebase Hosting</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
 
-  <!--========================================
+    <!--========================================
         =              Boostrap              =
         ======================================== -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-    crossorigin="anonymous">
-  <!--========================================
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <!--========================================
             =              Boostrap              =
      ======================================== -->
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/firebaseManage.js"></script>
 
 
-  <!--========================================
+    <!--========================================
     =              CSS                      =
     ======================================== -->
-  <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/estilos.css">
 
-  <!--========================================
+    <!--========================================
         =              CSS              =
         ======================================== -->
 
@@ -36,143 +35,126 @@
 <body>
 
 
-  <!--========================================
+    <!--========================================
          =              Navbar              =
      ======================================== -->
 
 
-  <nav id="navegacion" class="navbar navbar-expand-md navbar-light bg-light">
-    <div class="container">
-      <a href="index.html">
-        <img id="logoRegata" src="imagenes/regataLogo-01.ico" alt="Puede contener un icono">
+    <nav id="navegacion" class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container">
+            <a href="index.html">
+                <img id="logoRegata" src="imagenes/regataLogo-01.ico" alt="Puede contener un icono">
 
-        <a class="navbar-brand" href="#">
-          Regata Unisabana
-        </a>
-      </a>
-      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#secondNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+                <a class="navbar-brand" href="#">
+                    Regata Unisabana
+                </a>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#secondNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-      <div class="collapse navbar-collapse" id="secondNavbar">
-        <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="index.html">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="Clasificacion.html">Clasificación</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="Participantes.html">Participantes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="Login.html">Incio de sesion</a>
-        </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+            <div class="collapse navbar-collapse" id="secondNavbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Clasificacion.html">Clasificación</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Participantes.html">Participantes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Login.html">Incio de sesion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-  <!--navbar-->
+    <!--navbar-->
 
 
-  <!--========================================
+    <!--========================================
          =              Navbar              =
       ======================================== -->
 
-  <!--========================================
+    <!--========================================
       =              Video              =
       ======================================== -->
 
 
     <video id="videoindex" width="100%" height="100%" autoplay loop>
-      <source src="videos/724420003_1_1-transcode.mp4" type="video/mp4">
-      <source src="videos/mainLoop.webm" type="video/ogg"> Your browser does not support the video tag.
+        <source src="videos/724420003_1_1-transcode.mp4" type="video/mp4">
+        <source src="videos/mainLoop.webm" type="video/ogg"> Your browser does not support the video tag.
     </video>
 
-  <!--========================================
+    <!--========================================
       =              Video              =
       ======================================== -->
-  <!--========================================
+    <!--========================================
   =              mensajetop              =
  ======================================== -->
 
-  <div id="banner" class=" container-fluid fixed-top ">
-    <div class="row">
-      <div class="col-sm-3 my-3 text-right">
-        <img id="logoUsabana" class="d-inline" src="imagenes/Univ_sabana.png" alt="">
+    <div id="banner" class=" container-fluid fixed-top ">
+        <div class="row">
+            <div class="col-sm-3 my-3 text-right">
+                <img id="logoUsabana" class="d-inline" src="imagenes/Univ_sabana.png" alt="">
 
-      </div>
+            </div>
 
-      <div class="col-sm-6 text-center  my-4 d-inline ">
-        <h1 id="titulo">Regata Ecologica Unisabana</h1>
-      </div>
+            <div class="col-sm-6 text-center  my-4 d-inline ">
+                <h1 id="titulo">Regata Ecologica Unisabana</h1>
+            </div>
 
-      <div class="col-sm-3 my-3 text-left">
-        <img id="logoUsabana" src="imagenes/Univ_sabana.png" alt="">
+            <div class="col-sm-3 my-3 text-left">
+                <img id="logoUsabana" src="imagenes/Univ_sabana.png" alt="">
 
-      </div>
+            </div>
 
+        </div>
     </div>
-  </div>
 
-  <!--========================================
+    <!--========================================
  =              mensajetop              =
   ======================================== -->
 
 
-  <!--========================================
+    <!--========================================
            =              Table              =
         ======================================== -->
-  <div id="bannerposiciones" class="container-fluid w-75">
-    <div class="row">
-      <div class="col-lg-12 text-center img-thumbnail py-5">
-        <h1 id="textoposiciones">Tabla de posiciones</h1>
-      </div>
+    <div id="bannerposiciones" class="container-fluid w-75">
+        <div class="row">
+            <div class="col-lg-12 text-center img-thumbnail py-5">
+                <h1 id="textoposiciones">Tabla de posiciones</h1>
+            </div>
+        </div>
     </div>
-  </div>
 
 
 
-  <div id="contenido">
+    <div id="contenido">
 
-    <div class="container mt-5 pt-3 img-thumbnail border rounded table-responsive">
-      <table id="tablaPosiciones" class=" table table-sm table-striped border rounded">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Equipo</th>
-            <th scope="col">Partida</th>
-            <th scope="col">Lleguada</th>
-            <th scope="col">Puntaje tematico</th>
-            <th scope="col">Puntaje tiempo</th>
-            <th scope="col">Penalizaciones</th>
-            <th scope="col">Total</th>
-          </tr>
-        </thead>
-        <tbody id="table_body">
-        </tbody>
+        <div class="container mt-5 pt-3 img-thumbnail border rounded table-responsive">
+            <table id="tablaPosiciones" class=" table table-sm table-striped border rounded">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" id="#">#</th>
+                        <th scope="col" id="nombre">Equipo</th>
+                        <th scope="col" id="partida">Partida</th>
+                        <th scope="col" id="llegada">Llegada</th>
+                        <th scope="col" id="tema">Puntaje Tema</th>
+                        <th scope="col" id="tiempo">Puntaje Tiempo</th>
+                        <th scope="col" id="penalizaciones">Penalizaciones</th>
+                        <th scope="col" id="total">Total</th>
+                    </tr>
+                </thead>
+                <tbody id="table_body">
+                </tbody>
+            </table>
 
-        <!--========================================
-            =              Table  2            =
-            ======================================== -->
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Equipo</th>
-            <th scope="col">Partida</th>
-            <th scope="col">Lleguada</th>
-            <th scope="col">Puntaje tematico</th>
-            <th scope="col">Puntaje tiempo</th>
-            <th scope="col">Penalizaciones</th>
-            <th scope="col">Total</th>
-          </tr>
-        </thead>
-        <tbody id="table_pod">
-
-        </tbody>
-      </table>
+        </div>
     </div>
-  </div>
 
 
 
@@ -181,11 +163,9 @@
 
 <!--Bootstrap cdn-->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
 <!--========================================
  =              Firebase              =
@@ -193,16 +173,16 @@
 
 <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
 <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyD95iyP_mfP5xx52lLGjYhA5IybUrLyJ0A",
-    authDomain: "regatasabana.firebaseapp.com",
-    databaseURL: "https://regatasabana.firebaseio.com",
-    projectId: "regatasabana",
-    storageBucket: "regatasabana.appspot.com",
-    messagingSenderId: "868111790203"
-  };
-  firebase.initializeApp(config);
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyCSRi0fpWWCPHKr3pbTCMOcq0HCu8offik",
+        authDomain: "regatausabana-1a72e.firebaseapp.com",
+        databaseURL: "https://regatausabana-1a72e.firebaseio.com",
+        projectId: "regatausabana-1a72e",
+        storageBucket: "regatausabana-1a72e.appspot.com",
+        messagingSenderId: "528606738883"
+    };
+    firebase.initializeApp(config);
 </script>
 
 <!--========================================
