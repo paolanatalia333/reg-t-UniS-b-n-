@@ -1,0 +1,28 @@
+[debug] [2018-09-11T22:05:18.629Z] ----------------------------------------------------------------------
+[debug] [2018-09-11T22:05:18.632Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\dani2\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-09-11T22:05:18.632Z] CLI Version:   4.2.1
+[debug] [2018-09-11T22:05:18.632Z] Platform:      win32
+[debug] [2018-09-11T22:05:18.632Z] Node Version:  v8.11.4
+[debug] [2018-09-11T22:05:18.632Z] Time:          Tue Sep 11 2018 17:05:18 GMT-0500 (Hora est. Pacífico, Sudamérica)
+[debug] [2018-09-11T22:05:18.632Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-09-11T22:05:18.646Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-09-11T22:05:18.647Z] > authorizing via signed-in user
+[debug] [2018-09-11T22:05:18.649Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-09-11T22:05:18.649Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+
+[debug] [2018-09-11T22:05:19.543Z] <<< HTTP RESPONSE 200
+[debug] [2018-09-11T22:05:19.647Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/regatasabana  
+ 
+[debug] [2018-09-11T22:05:21.106Z] <<< HTTP RESPONSE 200
+[debug] [2018-09-11T22:05:21.112Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/regatasabana  
+ 
+[debug] [2018-09-11T22:05:21.719Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\dani2\Desktop\RegataSabana'...
+[info] 
+[debug] [2018-09-11T22:05:21.730Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/868111790203/clients/_:getWebAppConfig  
+ 
+[debug] [2018-09-11T22:05:22.938Z] <<< HTTP RESPONSE 200
+[info] i  hosting[regatasabana]: Serving hosting files from: public
+[info] +  hosting[regatasabana]: Local server: http://localhost:5000
