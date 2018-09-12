@@ -31,9 +31,51 @@ $(document).ready(function () {
             agregarData();
         }
     });
+    $('#boton_mod').click(function(){
+        var numEquipo = document.getElementById("numequipo").value;
+        if(confirm("¿Esta seguro que quiere modificar al equipo "+numEquipo+"?")){
+            modificaData();
+        }
+    });
+    function modificaData(){
+        var numEquipo = document.getElementById("numequipo").value;
+        var id = 0;
+
+        dbref.on('value', snap =>{
+            while((snap.child("team_"+i).val() != null)){
+                if(snap.child("team_"+i).child("numEquipo").val() == numEquipo){
+                    id = i;
+                }
+                i++;
+            }
+            i = 1;
+        });
+        if(id > 0){
+            var nomEquipo = document.getElementById("nomequipo").value;
+            var institucion = document.getElementById("institucion").value;
+            var tiempoTotal = document.getElementById("tiempoTotal").value;
+            var puntajeDiseño = document.getElementById("punDiseño").value;
+            var puntajeConstructor = document.getElementById("punCons").value;
+            var puntajeTiempo = document.getElementById("punTiempo").value;
+            var puntaeDecoracion = document.getElementById("punDec").value;
+            var total = document.getElementById("total").value;
+            var estado= document.getElementById("estado").value;
+            firebase.database().ref('teams/team_' + id ).set({
+                numEquipo : numEquipo,
+                nomEquipo : nomEquipo,
+                institucion: institucion,
+                tiempoTotal : tiempoTotal,
+                puntajeDiseño : puntajeDiseño,
+                puntajeConstructor : puntajeConstructor,
+                puntajeTiempo : puntajeTiempo,
+                puntajeDecoracion : puntaeDecoracion,
+                total : total,
+                estado: estado
+            });
+        }
+    }
 
     function agregarData(){
-
         var numEquipo = document.getElementById("numequipo").value;
         var nomEquipo = document.getElementById("nomequipo").value;
         var institucion = document.getElementById("institucion").value;
@@ -57,8 +99,6 @@ $(document).ready(function () {
             total : total,
             estado: estado
         });
-
         alert("Agregado correctamente");
     }
-
 });
