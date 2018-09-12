@@ -18,7 +18,9 @@ $(document).ready(function () {
             var puntajeDecoracion = snap.child("team_"+i).child("puntajeDecoracion").val();
             var total = snap.child("team_"+i).child("total").val();
             var estado= snap.child("team_"+i).child("estado").val();
-
+            $('#'+i+'-1').text(numEquipo);
+            $('#'+i+'-2').text(nomEquipo);
+            $('#'+i+'-3').text(tiempoTotal);
             $("#table_body").append("<tr><td>"+numEquipo+"</td><td>"+nomEquipo+"</td><td>"+tiempoTotal+"</td></tr>");
             i++;
             k=i;
