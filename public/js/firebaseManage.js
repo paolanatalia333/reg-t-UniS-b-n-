@@ -7,6 +7,10 @@ $(document).ready(function () {
 
     var equiposUsab;
     var equiposCol;
+    var mejorTiempoUsab;
+    var peorTiempoUsab;
+    var mejorTiempoCol;
+    var peorTiempoCol;
     dbref.on('value', snap =>{
         equiposUsab = [];
         equiposCol = [];
@@ -34,7 +38,9 @@ $(document).ready(function () {
                     total: total,
                     estado: estado
                 });
-
+                 $('#'+i+'-1').text(numEquipo);
+                 $('#'+i+'-2').text(nomEquipo);
+                 $('#'+i+'-3').text(tiempoTotal);
 
             }else{
                 equiposCol.push({
@@ -49,12 +55,14 @@ $(document).ready(function () {
                     total: total,
                     estado: estado
                 });
+                 $('#'+i+'-5').text(numEquipo);
+                 $('#'+i+'-5').text(nomEquipo);
+                 $('#'+i+'-6').text(tiempoTotal);
             }
-
-            $("#table_body").append("<tr><td>"+numEquipo+"</td><td>"+nomEquipo+"</td><td>"+tiempoTotal+"</td></tr>");
             i++;
             k=i;
         }
+
         equiposCol.sort(function(a,b){
             if(a.tiempoTotal>b.tiempoTotal){
                 return 1;
@@ -78,26 +86,82 @@ $(document).ready(function () {
         i = 1;
     });
     function buildDataCol(){
-        console.log(equiposCol);
         var i = 1;
         equiposCol.forEach(function(x){
-            $('#'+i+'-4').text(x.numEquipo);
-            $('#'+i+'-5').text(x.nomEquipo);
-            $('#'+i+'-6').text(x.tiempoTotal);
+            $('#o'+i+'-5').text(x.nomEquipo);
+            $('#o'+i+'-6').text(x.tiempoTotal);
             i++;
         });
+        mejorTiempoCol =  equiposCol[0].tiempoTotal;
+        peorTiempoCol =  equiposCol[equiposCol.length-1].tiempoTotal;
     }
 
     function buildDataUsab(){
-        console.log(equiposUsab);
         var i = 1;
         equiposUsab.forEach(function(x){
-            $('#'+i+'-1').text(x.numEquipo);
-            $('#'+i+'-2').text(x.nomEquipo);
-            $('#'+i+'-3').text(x.tiempoTotal);
+            $('#o'+i+'-2').text(x.nomEquipo);
+            $('#o'+i+'-3').text(x.tiempoTotal);
             i++;
         });
+        mejorTiempoUsab =  equiposUsab[0].tiempoTotal;
+        peorTiempoUsab =  equiposUsab[equiposUsab.length-1].tiempoTotal;
     }
+    dbref.limitToLast(1).on('child_added', snap => {
+
+            var numEquipo = snap.child("numEquipo").val();
+            var nomEquipo = snap.child("nomEquipo").val();
+            var institucion = snap.child("institucion").val();
+            var tiempoTotal = snap.child("tiempoTotal").val();
+            var puntajeDiseño = snap.child("puntajeDiseño").val();
+            var puntajeConstructor = snap.child("puntajeConstructor").val();
+            var puntajeTiempo = snap.child("puntajeTiempo").val();
+            var puntajeDecoracion = snap.child("puntajeDecoracion").val();
+            var total = snap.child("total").val();
+            var estado= snap.child("estado").val();
+
+            if(institucion == "usabana"){
+                $('#ul1').text(nomEquipo);
+                $('#ul2').text(tiempoTotal);
+                $('#ul3').text("-"+mejorTiempoUsab-tiempoTotal);
+                $('#ul4').text("+"+tiempoTotal-peorTiempoUsab);
+            }else{
+                $('#ul5').text(nomEquipo);
+                $('#ul6').text(tiempoTotal);
+                $('#ul7').text("-"+mejorTiempoCol-tiempoTotal);
+                $('#ul8').text("+"+tiempoTotal-peorTiempoCol);
+            }
+
+
+
+        });
+        dbref.on('child_changed', snap => {
+
+                var numEquipo = snap.child("numEquipo").val();
+                var nomEquipo = snap.child("nomEquipo").val();
+                var institucion = snap.child("institucion").val();
+                var tiempoTotal = snap.child("tiempoTotal").val();
+                var puntajeDiseño = snap.child("puntajeDiseño").val();
+                var puntajeConstructor = snap.child("puntajeConstructor").val();
+                var puntajeTiempo = snap.child("puntajeTiempo").val();
+                var puntajeDecoracion = snap.child("puntajeDecoracion").val();
+                var total = snap.child("total").val();
+                var estado= snap.child("estado").val();
+
+                if(institucion == "usabana"){
+                    $('#ul1').text(nomEquipo);
+                    $('#ul2').text(tiempoTotal);
+                    $('#ul3').text("-"+mejorTiempoUsab-tiempoTotal);
+                    $('#ul4').text("+"+tiempoTotal-peorTiempoUsab);
+                }else{
+                    $('#ul5').text(nomEquipo);
+                    $('#ul6').text(tiempoTotal);
+                    $('#ul7').text("-"+mejorTiempoCol-tiempoTotal);
+                    $('#ul8').text("+"+peorTiempoCol-tiempoTotal);
+                }
+
+
+
+            });
     $('#boton_add').click(function () {
         if(confirm("¿Esta seguro que quiere agregar?")){
             agregarData();
