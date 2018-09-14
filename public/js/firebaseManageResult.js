@@ -122,10 +122,9 @@ $(document).ready(function () {
 
             firebase.database().ref("/teams/" + eq3.team).on('value', function (snap) {
                 var snapi = snap.val();
-                total = parseInt(snapi.puntajeConstructor) + parseInt(snapi.puntajeDecoracion) + parseInt(suma) + parseInt(snapi.puntajeDiseño) - parseInt(snapi.penalizaciones);
+                total = parseInt(snapi.puntajeConstructor) + parseInt(snapi.puntajeDecoracion) + parseInt(snapi.puntajeTiempo) + parseInt(snapi.puntajeDiseño) - parseInt(snapi.penalizaciones);
             });
             firebase.database().ref("/teams/" + eq3.team).update({
-                puntajeTiempo: parseInt(suma),
                 total: total
             });
             suma = suma - brechaCol;
@@ -145,16 +144,13 @@ $(document).ready(function () {
         brechaUni = 40 / (otrosUni.length);
         var sumaUni = 40;
 
-
+        console.log(brechaUni + "  " + brechaCol);
         otrosUni.forEach(function (eq3) {
-
-
             firebase.database().ref("/teams/" + eq3.team).on('value', function (snap) {
                 var snapi = snap.val();
-                total = parseInt(snapi.puntajeConstructor) + parseInt(snapi.puntajeDecoracion) + parseInt(sumaUni) + parseInt(snapi.puntajeDiseño) - parseInt(snapi.penalizaciones);
+                total = parseInt(snapi.puntajeConstructor) + parseInt(snapi.puntajeDecoracion) + parseInt(snapi.puntajeTiempo) + parseInt(snapi.puntajeDiseño) - parseInt(snapi.penalizaciones);
             });
             firebase.database().ref("/teams/" + eq3.team).update({
-                puntajeTiempo: parseInt(sumaUni),
                 total: total
             });
             sumaUni = sumaUni - brechaUni;
@@ -163,15 +159,17 @@ $(document).ready(function () {
         cerosUni.forEach(function (eq4) {
             firebase.database().ref("/teams/" + eq4.team).on('value', function (snap) {
                 var snapi = snap.val();
-               total = parseInt(snapi.puntajeConstructor) + parseInt(snapi.puntajeDecoracion) + parseInt(snapi.puntajeDiseño) - parseInt(snapi.penalizaciones);
+                total = parseInt(snapi.puntajeConstructor) + parseInt(snapi.puntajeDecoracion) + parseInt(snapi.puntajeDiseño) - parseInt(snapi.penalizaciones);
             });
             firebase.database().ref("/teams/" + eq4.team).update({
-                puntajeTiempo: 0
+                puntajeTiempo: 0,
+                total: total
             });
         });
 
 
-       equiposCol.sort(function (a, b) {
+
+        equiposCol.sort(function (a, b) {
 
             if (a.total < b.total) {
                 return 1;
