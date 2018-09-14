@@ -9,8 +9,10 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Webflow" name="generator" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link href="https://uploads-ssl.webflow.com/5b92cce47794ecfb0a74ad59/css/semillero-hcd-regata.webflow.d4fcca048.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <link href="https://uploads-ssl.webflow.com/5b92cce47794ecfb0a74ad59/css/semillero-hcd-regata.webflow.d4fcca048.css" rel="stylesheet" type="text/css" /> -->
     <link rel="stylesheet" href="css/fotos.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js" type="text/javascript"></script>
     <script src="js/firebaseManage.js"></script>
     <script type="text/javascript">
@@ -19,7 +21,6 @@
                 families: ["Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic", "Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic"]
             }
         });
-
     </script>
     <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif]-->
     <script type="text/javascript">
@@ -28,7 +29,6 @@
                 t = " w-mod-";
             n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch")
         }(window, document);
-
     </script>
     <!--<script src="js/slider.js"></script>-->
     <link href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -232,7 +232,7 @@
             <img src="barco2.png" width="30%" sizes="100px" class="imagebar" />
             <!-- --------------------------------------FOTOS IFRAME------------------------------------------- -->
             <div id="ins2" class="div-block-3">
-                <iframe src="https://snapwidget.com/embed/597002" class="snapwidget-widget" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:100%; "></iframe>
+                <iframe id="1" class="snapwidget-widget" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:100%; "></iframe>
             </div>
             <!-- _---------------------------------BANDA POWERED BY---------------------------------------------------------------------------------------------------------------------------- -->
             <div class="div-block-11">
@@ -423,25 +423,93 @@
         </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
-<script>
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyCSRi0fpWWCPHKr3pbTCMOcq0HCu8offik",
-        authDomain: "regatausabana-1a72e.firebaseapp.com",
-        databaseURL: "https://regatausabana-1a72e.firebaseio.com",
-        projectId: "regatausabana-1a72e",
-        storageBucket: "regatausabana-1a72e.appspot.com",
-        messagingSenderId: "528606738883"
-    };
-    firebase.initializeApp(config);
-</script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCSRi0fpWWCPHKr3pbTCMOcq0HCu8offik",
+            authDomain: "regatausabana-1a72e.firebaseapp.com",
+            databaseURL: "https://regatausabana-1a72e.firebaseio.com",
+            projectId: "regatausabana-1a72e",
+            storageBucket: "regatausabana-1a72e.appspot.com",
+            messagingSenderId: "528606738883"
+        };
+        firebase.initializeApp(config);
+    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
 
     <!-- ------------------------------------SCRIPT FOTOS-------------------------------------- -->
     <!-- ------------------------------------SCRIPT FOTOS-------------------------------------- -->
     <!-- ------------------------------------SCRIPT FOTOS-------------------------------------- -->
     <script src="https://snapwidget.com/js/snapwidget.js"></script>
+    <script>
+        var holaMundo = document.getElementById('1');
+        var dbRef = firebase.database().ref().on('value', function(snap) {
+            snap.val();
+            console.log(snap.val().url);
+            holaMundo.setAttribute("src", snap.val().url);
+        });
+    </script>
+    <script>
+        var fotos = [];
+
+        function cargar(arreglo, valor) {
+            var cuenta = arreglo.length;
+            arreglo[cuenta] = valor;
+            return (arreglo);
+        }
+
+        window.addEventListener('load', function() {
+            console.log('contenido cargado');
+
+
+            var arregloHoli = [];
+            firebase.database().ref("/fotos").on('value', function(snap) {
+                snap.forEach(function(childSnap) {
+                    console.log(childSnap.val());
+                    fotos[childSnap.key] = childSnap.val();
+                });
+
+                console.log(arregloHoli + "holiiis2");
+            })
+            console.log(fotos)
+
+            /********* cargar imagen *******/
+
+            cargar(fotos,
+                "https://instagram.fbog3-1.fna.fbcdn.net/vp/de9898b23b92c3bc13fcac54d6516bc0/5C1AE142/t51.2885-15/sh0.08/e35/s640x640/40529272_288136901792513_901874626634776975_n.jpg"
+            )
+            cargar(fotos,
+                "https://instagram.fbog3-1.fna.fbcdn.net/vp/de9898b23b92c3bc13fcac54d6516bc0/5C1AE142/t51.2885-15/sh0.08/e35/s640x640/40529272_288136901792513_901874626634776975_n.jpg"
+            )
+
+
+            /*****************************FUNCION DONDE RECORRE EL ARRAY*************************************************************/
+            var idx = 0;
+
+            function cambiarImagen() {
+                document.slider.src = fotos[idx];
+                // document.slider1.src = fotos[idx + 1];
+
+                if (idx < fotos.length - 1) {
+                    console.log(idx + "idx");
+                    console.log(fotos.length - 1 + "LEN")
+                    idx++;
+                    console.log(idx + "idx");
+                } else {
+                    idx = 0;
+                }
+            }
+            /*****************************TIMEPO DE RECORRIDO DEL SLIDER*****************************************************************/
+            setInterval(cambiarImagen, 4000);
+        });
+    </script>
+
+
+    <!-- ------------------------------------SCRIPT FOTOS-------------------------------------- -->
+    <!-- ------------------------------------SCRIPT FOTOS-------------------------------------- -->
+    <!-- ------------------------------------SCRIPT FOTOS-------------------------------------- -->
+    <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+
 
 </body>
 
