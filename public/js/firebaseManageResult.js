@@ -117,6 +117,7 @@ $(document).ready(function () {
         } else if (time < 22) {
             var h = 14;
             j = 12;
+            console.log(h);
             while (h < 25) {
                 $('#' + j + '-5').text(equiposCol[h].numEquipo);
                 $('#' + j + '-6').text(equiposCol[h].nomEquipo);
@@ -126,12 +127,14 @@ $(document).ready(function () {
         } else if (time < 32) {
             var k = 25;
             j = 12;
+
+            console.log(k);
             while (k < 36) {
-                if (equiposCol[k].numEquipo == null) {
+
+                if (equiposCol[k] != undefined) {
                     $('#' + j + '-5').text(equiposCol[k].numEquipo);
                     $('#' + j + '-6').text(equiposCol[k].nomEquipo);
                 } else {
-
                     $('#' + j + '-5').text("-");
                     $('#' + j + '-6').text("-");
                 }
