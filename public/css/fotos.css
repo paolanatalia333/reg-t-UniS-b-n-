@@ -1,0 +1,48 @@
+.div-block-2 {
+    height: 50%;
+    /* background-image: url("https://uploads-ssl.webflow.com/5b92cce47794ecfb0a74ad59/5b9858154ca2afb907edf721_regata_ecologica_unisabana_9.jpg"); */
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
+.div-block-3 {
+    height: 50%;
+    /* background-image: url("https://uploads-ssl.webflow.com/5b92cce47794ecfb0a74ad59/5b98583a4ca2af5073edf728_xREGATA_UNISABANA_3.jpg.pagespeed.ic.UNq1QEH9zy.jpg"); */
+    background-position: 50% 50%;
+    background-size: cover;
+    background-attachment: scroll;
+}
+
+
+/*///////////////////////////////// LISTONE (POWERED BY) ////////////////////////////////////////////////////////*/
+
+.image {
+    position: fixed;
+    left: 35%;
+    bottom: 52%;
+    z-index: 1;
+}
+
+.imagebar {
+    position: fixed;
+    left: 35%;
+    bottom: 47.5%;
+    z-index: 1;
+}
+
+.imagenU {
+    position: fixed;
+    left: 35%;
+    top: 0%;
+    z-index: 1;
+}
+
+.imagenU1 {
+    position: fixed;
+    left: 35%;
+    bottom: 0%;
+    z-index: 1;
+}
+
+
+/*///////////////////////////////// LISTONE (POWERED BY) ////////////////////////////////////////////////////////*/

@@ -4,6 +4,8 @@ $(document).ready(function () {
     var i = 1;
     var j = 1;
     var k = 1;
+    var uni=0;
+    var col=0;
 
     var equiposUsab;
     var equiposCol;
@@ -25,7 +27,10 @@ $(document).ready(function () {
             var puntajeDecoracion = snap.child("team_"+i).child("puntajeDecoracion").val();
             var total = snap.child("team_"+i).child("total").val();
             var estado= snap.child("team_"+i).child("estado").val();
+
             if(institucion == "usabana"){
+                uni++;
+                console.log(i, uni);
                 equiposUsab.push({
                     numEquipo: numEquipo,
                     nomEquipo: nomEquipo,
@@ -38,11 +43,10 @@ $(document).ready(function () {
                     total: total,
                     estado: estado
                 });
-                 $('#'+i+'-1').text(numEquipo);
-                 $('#'+i+'-2').text(nomEquipo);
-                 $('#'+i+'-3').text(tiempoTotal);
 
             }else{
+                col++;
+                 console.log(i, col);
                 equiposCol.push({
                     numEquipo: numEquipo,
                     nomEquipo: nomEquipo,
@@ -55,15 +59,13 @@ $(document).ready(function () {
                     total: total,
                     estado: estado
                 });
-                 $('#'+i+'-5').text(numEquipo);
-                 $('#'+i+'-5').text(nomEquipo);
-                 $('#'+i+'-6').text(tiempoTotal);
             }
             i++;
             k=i;
         }
 
         equiposCol.sort(function(a,b){
+
             if(a.tiempoTotal>b.tiempoTotal){
                 return 1;
             }
@@ -88,8 +90,9 @@ $(document).ready(function () {
     function buildDataCol(){
         var i = 1;
         equiposCol.forEach(function(x){
-            $('#o'+i+'-5').text(x.nomEquipo);
-            $('#o'+i+'-6').text(x.tiempoTotal);
+
+            $('#'+i+'-5').text(x.nomEquipo);
+            $('#'+i+'-6').text(x.tiempoTotal);
             i++;
         });
         mejorTiempoCol =  equiposCol[0].tiempoTotal;
@@ -98,9 +101,10 @@ $(document).ready(function () {
 
     function buildDataUsab(){
         var i = 1;
+        console.log(equiposUsab);
         equiposUsab.forEach(function(x){
-            $('#o'+i+'-2').text(x.nomEquipo);
-            $('#o'+i+'-3').text(x.tiempoTotal);
+            $('#'+i+'-2').text(x.nomEquipo);
+            $('#'+i+'-3').text(x.tiempoTotal);
             i++;
         });
         mejorTiempoUsab =  equiposUsab[0].tiempoTotal;
@@ -122,13 +126,13 @@ $(document).ready(function () {
             if(institucion == "usabana"){
                 $('#ul1').text(nomEquipo);
                 $('#ul2').text(tiempoTotal);
-                $('#ul3').text("-"+mejorTiempoUsab-tiempoTotal);
-                $('#ul4').text("+"+tiempoTotal-peorTiempoUsab);
+                $('#ul3').text(tiempoTotal-mejorTiempoUsab);
+                $('#ul4').text(tiempoTotal-peorTiempoUsab);
             }else{
                 $('#ul5').text(nomEquipo);
                 $('#ul6').text(tiempoTotal);
-                $('#ul7').text("-"+mejorTiempoCol-tiempoTotal);
-                $('#ul8').text("+"+tiempoTotal-peorTiempoCol);
+                $('#ul7').text(tiempoTotal-mejorTiempoCol);
+                $('#ul8').text(peorTiempoCol-tiempoTotal);
             }
 
 

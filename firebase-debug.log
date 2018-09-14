@@ -1,24 +1,24 @@
-[debug] [2018-09-13T17:04:45.652Z] ----------------------------------------------------------------------
-[debug] [2018-09-13T17:04:45.663Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\dani2\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
-[debug] [2018-09-13T17:04:45.663Z] CLI Version:   4.2.1
-[debug] [2018-09-13T17:04:45.664Z] Platform:      win32
-[debug] [2018-09-13T17:04:45.664Z] Node Version:  v8.11.4
-[debug] [2018-09-13T17:04:45.664Z] Time:          Thu Sep 13 2018 12:04:45 GMT-0500 (Hora est. Pacífico, Sudamérica)
-[debug] [2018-09-13T17:04:45.664Z] ----------------------------------------------------------------------
+[debug] [2018-09-13T21:57:10.583Z] ----------------------------------------------------------------------
+[debug] [2018-09-13T21:57:10.585Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\dani2\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-09-13T21:57:10.586Z] CLI Version:   4.2.1
+[debug] [2018-09-13T21:57:10.586Z] Platform:      win32
+[debug] [2018-09-13T21:57:10.586Z] Node Version:  v8.11.4
+[debug] [2018-09-13T21:57:10.586Z] Time:          Thu Sep 13 2018 16:57:10 GMT-0500 (Hora est. Pacífico, Sudamérica)
+[debug] [2018-09-13T21:57:10.586Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2018-09-13T17:04:45.681Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-09-13T17:04:45.693Z] > authorizing via signed-in user
-[debug] [2018-09-13T17:04:45.696Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/regatasabana  
+[debug] [2018-09-13T21:57:10.605Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-09-13T21:57:10.606Z] > authorizing via signed-in user
+[debug] [2018-09-13T21:57:10.610Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/regatasabana  
  
-[debug] [2018-09-13T17:04:46.520Z] <<< HTTP RESPONSE 200
-[debug] [2018-09-13T17:04:46.523Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/regatasabana  
+[debug] [2018-09-13T21:57:11.280Z] <<< HTTP RESPONSE 200
+[debug] [2018-09-13T21:57:11.282Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/regatasabana  
  
-[debug] [2018-09-13T17:04:47.091Z] <<< HTTP RESPONSE 200
+[debug] [2018-09-13T21:57:11.686Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from 'C:\Users\dani2\Desktop\regt'...
 [info] 
-[debug] [2018-09-13T17:04:47.111Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/868111790203/clients/_:getWebAppConfig  
+[debug] [2018-09-13T21:57:11.702Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/868111790203/clients/_:getWebAppConfig  
  
-[debug] [2018-09-13T17:04:47.849Z] <<< HTTP RESPONSE 200
+[debug] [2018-09-13T21:57:12.146Z] <<< HTTP RESPONSE 200
 [info] i  hosting[regatasabana]: Serving hosting files from: public
 [info] +  hosting[regatasabana]: Local server: http://localhost:5000

@@ -2338,7 +2338,7 @@ textarea.w-select {
     -ms-flex: 0 auto;
     flex: 0 auto;
 }
-
+/*
 .div-block-2 {
     height: 50%;
     background-image: url("https://uploads-ssl.webflow.com/5b92cce47794ecfb0a74ad59/5b9858154ca2afb907edf721_regata_ecologica_unisabana_9.jpg");
@@ -2353,7 +2353,7 @@ textarea.w-select {
     background-size: cover;
     background-attachment: scroll;
 }
-
+*/
 .left {
     display: -webkit-box;
     display: -webkit-flex;
