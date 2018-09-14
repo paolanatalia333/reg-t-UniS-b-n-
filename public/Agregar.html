@@ -1,46 +1,135 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Prueba</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/firebaseManage.js"></script>
 </head>
-<body>
-#Equipo:<input type="text" id="numequipo">  <br>
-Nombre Equipo:<input type="text" id="nomequipo"> <br>
-Institución :<input type="text" id="institucion"> <br>
-Tiempo Total:<input type="text" id="tiempoTotal"> <br>
-Puntaje Diseño:<input type="text" id="punDiseño"> <br>
-Puntaje Construcción:<input type="text" id="punCons"> <br>
-puntaje tiempo:<input type="text" id="punTiempo"> <br>
-Puntaje decoración:<input type="text" id="punDec"> <br>
-Total:<input type="text" id="total"> <br>
-estado <select name="" id="estado">
-        <option value="descalificado">Descalificado</option>
-        <option value="inscrito">Inscrito</option>
-        <option value="finalizado">Finalizado</option>
-</select> <br>
 
-<button type="button" id="boton_add">Enviar</button>
-<button type="button" id="boton_mod">Modificar</button>
-<script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
-<script>
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyCSRi0fpWWCPHKr3pbTCMOcq0HCu8offik",
-        authDomain: "regatausabana-1a72e.firebaseapp.com",
-        databaseURL: "https://regatausabana-1a72e.firebaseio.com",
-        projectId: "regatausabana-1a72e",
-        storageBucket: "regatausabana-1a72e.appspot.com",
-        messagingSenderId: "528606738883"
-    };
-    firebase.initializeApp(config);
-</script>
+<body>
+    <div class="jumbotron" style="margin: 0;">
+        <form action="" id="myForm" class="main-form needs-validation" novalidate style="width: 450px; margin: auto;">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="NumEquipo">#Equipo:</label>
+                        <input type="text" id="numequipo" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="nombreEquipo">Nombre Equipo:</label>
+                        <input type="text" id="nomequipo" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="institucion">Institución:</label>
+                        <input type="text" id="institucion" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="tiempoTotal">Tiempo Total:</label>
+                        <input type="text" id="tiempoTotal" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="puntajeDiseño">Puntaje Diseño:</label>
+                        <input type="text" id="punDiseño" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="puntajeConstruccion">Puntaje Construcción:</label>
+                        <input type="text" id="punCons" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="puntajeTiempo">Puntaje Tiempo:</label>
+                        <input type="text" id="punTiempo" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="puntajeDecoracion">Puntaje Decoración:</label>
+                        <input type="text" id="punDec" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="total">Total</label>
+                        <input type="text" id="total" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <select name="" id="estado" class="form-control" required>
+                            <option value="descalificado">Descalificado</option>
+                            <option value="inscrito">Inscrito</option>
+                            <option value="finalizado">Finalizado</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <button type="button" id="boton_add" class="btn btn-outline-primary">Enviar</button>
+                        <br>
+                        <br>
+                        <button type="button" id="boton_mod" class="btn btn-outline-primary">Modificar</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <!-- JUMBOTRON -->
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCSRi0fpWWCPHKr3pbTCMOcq0HCu8offik",
+            authDomain: "regatausabana-1a72e.firebaseapp.com",
+            databaseURL: "https://regatausabana-1a72e.firebaseio.com",
+            projectId: "regatausabana-1a72e",
+            storageBucket: "regatausabana-1a72e.appspot.com",
+            messagingSenderId: "528606738883"
+        };
+        firebase.initializeApp(config);
+    </script>
 
 
 </body>
+
 </html>
