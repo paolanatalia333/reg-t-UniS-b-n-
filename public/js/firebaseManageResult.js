@@ -7,7 +7,6 @@ $(document).ready(function () {
     var col = 0;
     var time = 0;
     var x = null;
-
     var equiposUsab;
     var equiposCol;
     var mejorTiempoUsab;
@@ -32,6 +31,7 @@ $(document).ready(function () {
             if (institucion == "usabana") {
                 uni++;
                 equiposUsab.push({
+                    team: "team_" + i,
                     numEquipo: numEquipo,
                     nomEquipo: nomEquipo,
                     institucion: institucion,
@@ -47,6 +47,7 @@ $(document).ready(function () {
             } else {
                 col++;
                 equiposCol.push({
+                    team: "team_" + i,
                     numEquipo: numEquipo,
                     nomEquipo: nomEquipo,
                     institucion: institucion,
@@ -82,8 +83,114 @@ $(document).ready(function () {
             }
             return 0;
         });
-        //buildDataCol2();
+
         i = 1;
+        var n1 = 0;
+        var n2 = 0;
+        var m1 = 0;
+        var m2 = 0;
+        var cerosColegios = [];
+        var otrosColegios = [];
+        var cerosUni = [];
+        var otrosUni = [];
+        equiposCol.forEach(function (eq1) {
+            if (eq1.tiempoTotal > "0" && eq1.tiempoTotal != "0:00:0" && eq1.tiempoTotal != "00:00:0" && eq1.tiempoTotal != "0:00:00" && eq1.tiempoTotal != "0:0:0" && eq1.tiempoTotal != "00:00:00") {
+                otrosColegios[n1] = eq1;
+                n1++;
+            } else {
+                cerosColegios[n2] = eq1;
+                n2++;
+            }
+
+        });
+        equiposUsab.forEach(function (eq2) {
+            if (eq2.tiempoTotal > "0" && eq2.tiempoTotal != "0:00:0" && eq2.tiempoTotal != "00:00:0" && eq2.tiempoTotal != "0:00:00" && eq2.tiempoTotal != "0:0:0" && eq2.tiempoTotal != "00:00:00") {
+                otrosUni[m1] = eq2;
+                m1++;
+            } else {
+                cerosUni[m2] = eq2;
+                m2++;
+            }
+
+        });
+
+        var brechaCol = 0;
+        brechaCol = 40 / (otrosColegios.length);
+        var suma = 40;
+        var total
+        otrosColegios.forEach(function (eq3) {
+
+            firebase.database().ref("/teams/" + eq3.team).on('value', function (snap) {
+                var snapi = snap.val();
+                total = parseInt(snapi.puntajeConstructor) + parseInt(snapi.puntajeDecoracion) + parseInt(suma) + parseInt(snapi.puntajeDiseño) - parseInt(snapi.penalizaciones);
+            });
+            firebase.database().ref("/teams/" + eq3.team).update({
+                puntajeTiempo: parseInt(suma),
+                total: total
+            });
+            suma = suma - brechaCol;
+        });
+        cerosColegios.forEach(function (eq4) {
+
+            firebase.database().ref("/teams/" + eq4.team).on('value', function (snap) {
+                var snapi = snap.val();
+                total = parseInt(snapi.puntajeConstructor) + parseInt(snapi.puntajeDecoracion) + parseInt(snapi.puntajeDiseño) - parseInt(snapi.penalizaciones);
+            });
+            firebase.database().ref("/teams/" + eq4.team).update({
+                puntajeTiempo: 0,
+                total: total
+            });
+        });
+        var brechaUni = 0;
+        brechaUni = 40 / (otrosUni.length);
+        var sumaUni = 40;
+
+
+        otrosUni.forEach(function (eq3) {
+
+
+            firebase.database().ref("/teams/" + eq3.team).on('value', function (snap) {
+                var snapi = snap.val();
+                total = parseInt(snapi.puntajeConstructor) + parseInt(snapi.puntajeDecoracion) + parseInt(sumaUni) + parseInt(snapi.puntajeDiseño) - parseInt(snapi.penalizaciones);
+            });
+            firebase.database().ref("/teams/" + eq3.team).update({
+                puntajeTiempo: parseInt(sumaUni),
+                total: total
+            });
+            sumaUni = sumaUni - brechaUni;
+
+        });
+        cerosUni.forEach(function (eq4) {
+            firebase.database().ref("/teams/" + eq4.team).on('value', function (snap) {
+                var snapi = snap.val();
+               total = parseInt(snapi.puntajeConstructor) + parseInt(snapi.puntajeDecoracion) + parseInt(snapi.puntajeDiseño) - parseInt(snapi.penalizaciones);
+            });
+            firebase.database().ref("/teams/" + eq4.team).update({
+                puntajeTiempo: 0
+            });
+        });
+
+
+       equiposCol.sort(function (a, b) {
+
+            if (a.total < b.total) {
+                return 1;
+            }
+            if (a.total > b.total) {
+                return -1;
+            }
+            return 0;
+        });
+        equiposUsab.sort(function (a, b) {
+            if (a.total < b.total) {
+                return 1;
+            }
+            if (a.total > b.total) {
+                return -1;
+            }
+            return 0;
+        });
+
     });
 
 
@@ -92,54 +199,151 @@ $(document).ready(function () {
 
         if (time < 2) {
 
-            $('#' + 4 + '-2g').text(equiposCol[0].numEquipo);
-            $('#' + 4 + '-3g').text(equiposCol[0].nomEquipo);
-            $('#' + 5 + '-2g').text(equiposCol[1].numEquipo);
-            $('#' + 5 + '-3g').text(equiposCol[1].nomEquipo);
-            $('#' + 6 + '-2g').text(equiposCol[2].numEquipo);
-            $('#' + 6 + '-3g').text(equiposCol[2].nomEquipo);
+            $('#' + 4 + '-2g').text(equiposCol[0].nomEquipo);
+            $('#' + 4 + '-3g').text(equiposCol[0].total);
+            $('#' + 5 + '-2g').text(equiposCol[1].nomEquipo);
+            $('#' + 5 + '-3g').text(equiposCol[1].total);
+            $('#' + 6 + '-2g').text(equiposCol[2].nomEquipo);
+            $('#' + 6 + '-3g').text(equiposCol[2].total);
 
-            $('#' + 1 + '-2g').text(equiposUsab[0].numEquipo);
-            $('#' + 1 + '-3g').text(equiposUsab[0].nomEquipo);
-            $('#' + 2 + '-2g').text(equiposUsab[1].numEquipo);
-            $('#' + 2 + '-3g').text(equiposUsab[1].nomEquipo);
-            $('#' + 3 + '-2g').text(equiposUsab[2].numEquipo);
-            $('#' + 3 + '-3g').text(equiposUsab[2].nomEquipo);
+            $('#' + 1 + '-2g').text(equiposUsab[0].nomEquipo);
+            $('#' + 1 + '-3g').text(equiposUsab[0].total);
+            $('#' + 2 + '-2g').text(equiposUsab[1].nomEquipo);
+            $('#' + 2 + '-3g').text(equiposUsab[1].total);
+            $('#' + 3 + '-2g').text(equiposUsab[2].nomEquipo);
+            $('#' + 3 + '-3g').text(equiposUsab[2].total);
+
         } else if (time < 12) {
-            var i = 3;
+            var i = 0;
             var j = 12;
-            while (i <= 13) {
-                $('#' + j + '-5').text(equiposCol[i].numEquipo);
-                $('#' + j + '-6').text(equiposCol[i].nomEquipo);
+            var o = 1;
+            while (i <= 10) {
+                if (equiposCol[i] != undefined) {
+                    $('#' + j + '-1').text(i + 1);
+                    $('#' + j + '-2').text(equiposCol[i].nomEquipo);
+                    $('#' + j + '-3').text(equiposCol[i].puntajeDiseño);
+                    $('#' + j + '-4').text(equiposCol[i].puntajeConstructor);
+                    $('#' + j + '-5').text(equiposCol[i].puntajeTiempo);
+                    $('#' + j + '-6').text(equiposCol[i].puntajeDecoracion);
+                    $('#' + j + '-7').text(equiposCol[i].total);
+                } else {
+                    $('#' + j + '-1').text("-");
+                    $('#' + j + '-2').text("-");
+                    $('#' + j + '-3').text("-");
+                    $('#' + j + '-4').text("-");
+                    $('#' + j + '-5').text("-");
+                    $('#' + j + '-6').text("-");
+                    $('#' + j + '-7').text("-");
+                }
+                if (equiposUsab[i] != undefined) {
+                    $('#' + o + '-1').text(i + 1);
+                    $('#' + o + '-2').text(equiposUsab[i].nomEquipo);
+                    $('#' + o + '-3').text(equiposUsab[i].puntajeDiseño);
+                    $('#' + o + '-4').text(equiposUsab[i].puntajeConstructor);
+                    $('#' + o + '-5').text(equiposUsab[i].puntajeTiempo);
+                    $('#' + o + '-6').text(equiposUsab[i].puntajeDecoracion);
+                    $('#' + o + '-7').text(equiposUsab[i].total);
+
+                } else {
+                    $('#' + o + '-2').text("-");
+                    $('#' + o + '-1').text("-");
+                    $('#' + o + '-3').text("-");
+                    $('#' + o + '-4').text("-");
+                    $('#' + o + '-5').text("-");
+                    $('#' + o + '-6').text("-");
+                    $('#' + o + '-7').text("-");
+                }
                 j++;
+                o++;
                 i++;
             }
         } else if (time < 22) {
-            var h = 14;
+            var h = 11;
             j = 12;
-            console.log(h);
-            while (h < 25) {
-                $('#' + j + '-5').text(equiposCol[h].numEquipo);
-                $('#' + j + '-6').text(equiposCol[h].nomEquipo);
-                j++;
-                h++;
-            }
-        } else if (time < 32) {
-            var k = 25;
-            j = 12;
+            o = 1;
+            while (h < 22) {
+                if (equiposCol[h] != undefined) {
+                    $('#' + j + '-1').text(h + 1);
+                    $('#' + j + '-2').text(equiposCol[h].nomEquipo);
+                    $('#' + j + '-3').text(equiposCol[h].puntajeDiseño);
+                    $('#' + j + '-4').text(equiposCol[h].puntajeConstructor);
+                    $('#' + j + '-5').text(equiposCol[h].puntajeTiempo);
+                    $('#' + j + '-6').text(equiposCol[h].puntajeDecoracion);
+                    $('#' + j + '-7').text(equiposCol[h].total);
 
-            console.log(k);
-            while (k < 36) {
-
-                if (equiposCol[k] != undefined) {
-                    $('#' + j + '-5').text(equiposCol[k].numEquipo);
-                    $('#' + j + '-6').text(equiposCol[k].nomEquipo);
                 } else {
+                    $('#' + j + '-2').text("-");
+                    $('#' + j + '-1').text("-");
+                    $('#' + j + '-3').text("-");
+                    $('#' + j + '-4').text("-");
                     $('#' + j + '-5').text("-");
                     $('#' + j + '-6').text("-");
+                    $('#' + j + '-7').text("-");
+                }
+                if (equiposUsab[h] != undefined) {
+                    $('#' + o + '-1').text(h + 1);
+                    $('#' + o + '-2').text(equiposUsab[h].nomEquipo);
+                    $('#' + o + '-3').text(equiposUsab[h].puntajeDiseño);
+                    $('#' + o + '-4').text(equiposUsab[h].puntajeConstructor);
+                    $('#' + o + '-5').text(equiposUsab[h].puntajeTiempo);
+                    $('#' + o + '-6').text(equiposUsab[h].puntajeDecoracion);
+                    $('#' + o + '-7').text(equiposUsab[h].total);
+
+                } else {
+                    $('#' + o + '-2').text("-");
+                    $('#' + o + '-1').text("-");
+                    $('#' + o + '-3').text("-");
+                    $('#' + o + '-4').text("-");
+                    $('#' + o + '-5').text("-");
+                    $('#' + o + '-6').text("-");
+                    $('#' + o + '-7').text("-");
                 }
                 j++;
-                k++;
+                h++;
+                o++;
+            }
+        } else if (time < 32) {
+            var l = 22;
+            j = 12;
+            o = 1;
+            while (l < 33) {
+                if (equiposCol[l] != undefined) {
+                    $('#' + j + '-1').text(l + 1);
+                    $('#' + j + '-2').text(equiposCol[l].nomEquipo);
+                    $('#' + j + '-3').text(equiposCol[l].puntajeDiseño);
+                    $('#' + j + '-4').text(equiposCol[l].puntajeConstructor);
+                    $('#' + j + '-5').text(equiposCol[l].puntajeTiempo);
+                    $('#' + j + '-6').text(equiposCol[l].puntajeDecoracion);
+                    $('#' + j + '-7').text(equiposCol[l].total);
+                } else {
+                    $('#' + j + '-2').text("-");
+                    $('#' + j + '-1').text("-");
+                    $('#' + j + '-3').text("-");
+                    $('#' + j + '-4').text("-");
+                    $('#' + j + '-5').text("-");
+                    $('#' + j + '-6').text("-");
+                    $('#' + j + '-7').text("-");
+                }
+                if (equiposUsab[l] != undefined) {
+                    $('#' + o + '-1').text(l + 1);
+                    $('#' + o + '-2').text(equiposUsab[l].nomEquipo);
+                    $('#' + o + '-3').text(equiposUsab[l].puntajeDiseño);
+                    $('#' + o + '-4').text(equiposUsab[l].puntajeConstructor);
+                    $('#' + o + '-5').text(equiposUsab[l].puntajeTiempo);
+                    $('#' + o + '-6').text(equiposUsab[l].puntajeDecoracion);
+                    $('#' + o + '-7').text(equiposUsab[l].total);
+                } else {
+                    $('#' + o + '-2').text("-");
+                    $('#' + o + '-1').text("-");
+                    $('#' + o + '-3').text("-");
+                    $('#' + o + '-4').text("-");
+                    $('#' + o + '-5').text("-");
+                    $('#' + o + '-6').text("-");
+                    $('#' + o + '-7').text("-");
+                }
+                l++;
+                j++;
+                o++;
             }
         } else if (time < 38) {
             time = 0;
@@ -147,186 +351,4 @@ $(document).ready(function () {
 
     }, 1000);
 
-
-
-    /* function buildDataCol() {
-         var x = 0;
-         // while (x < 1000) {
-         var i = 12;
-         equiposCol.forEach(function (x) {
-             $('#' + i + '-5').text(x.nomEquipo);
-             $('#' + i + '-6').text(x.tiempoTotal);
-             if (i == 22) {
-                 console.log("tow minitesuyuyuyuyuy");
-                 sleep(2000).then(function () {
-                     console.log("dos minutos despueees" + i);
-
-                     i = 14;
-                 });
-
-             }
-             i++;
-         });
-         var j = 1;
-         equiposUsab.forEach(async function (x) {
-             $('#' + j + '-2').text(x.nomEquipo);
-             $('#' + j + '-3').text(x.tiempoTotal);
-
-             if (j == 11) {
-
-                 console.log("tow minites-----");
-                 await sleep(2000);
-                 console.log("2 minuts despues" + j);
-                 j = 3;
-             }
-             j++;
-         });
-
-         x++;
-         console.log(x);
-         // }
-
-     }
-
-     function show() {
-
-     }
-
-     function sleep(ms) {
-         return new Promise(resolve => setTimeout(resolve, ms));
-     }
-
-
-     dbref.limitToLast(1).on('child_added', snap => {
-
-         var numEquipo = snap.child("numEquipo").val();
-         var nomEquipo = snap.child("nomEquipo").val();
-         var institucion = snap.child("institucion").val();
-         var tiempoTotal = snap.child("tiempoTotal").val();
-         var puntajeDiseño = snap.child("puntajeDiseño").val();
-         var puntajeConstructor = snap.child("puntajeConstructor").val();
-         var puntajeTiempo = snap.child("puntajeTiempo").val();
-         var puntajeDecoracion = snap.child("puntajeDecoracion").val();
-         var total = snap.child("total").val();
-         var estado = snap.child("estado").val();
-
-         if (institucion == "usabana") {
-             $('#ul1').text(nomEquipo);
-             $('#ul2').text(tiempoTotal);
-             $('#ul3').text(tiempoTotal - mejorTiempoUsab);
-             $('#ul4').text(tiempoTotal - peorTiempoUsab);
-         } else {
-             $('#ul5').text(nomEquipo);
-             $('#ul6').text(tiempoTotal);
-             $('#ul7').text(tiempoTotal - mejorTiempoCol);
-             $('#ul8').text(peorTiempoCol - tiempoTotal);
-         }
-
-
-
-     });
-     dbref.on('child_changed', snap => {
-
-         var numEquipo = snap.child("numEquipo").val();
-         var nomEquipo = snap.child("nomEquipo").val();
-         var institucion = snap.child("institucion").val();
-         var tiempoTotal = snap.child("tiempoTotal").val();
-         var puntajeDiseño = snap.child("puntajeDiseño").val();
-         var puntajeConstructor = snap.child("puntajeConstructor").val();
-         var puntajeTiempo = snap.child("puntajeTiempo").val();
-         var puntajeDecoracion = snap.child("puntajeDecoracion").val();
-         var total = snap.child("total").val();
-         var estado = snap.child("estado").val();
-
-         if (institucion == "usabana") {
-             $('#ul1').text(nomEquipo);
-             $('#ul2').text(tiempoTotal);
-             $('#ul3').text("-" + mejorTiempoUsab - tiempoTotal);
-             $('#ul4').text("+" + tiempoTotal - peorTiempoUsab);
-         } else {
-             $('#ul5').text(nomEquipo);
-             $('#ul6').text(tiempoTotal);
-             $('#ul7').text("-" + mejorTiempoCol - tiempoTotal);
-             $('#ul8').text("+" + peorTiempoCol - tiempoTotal);
-         }
-
-
-
-     });
-     $('#boton_add').click(function () {
-         if (confirm("¿Esta seguro que quiere agregar?")) {
-             agregarData();
-         }
-     });
-     $('#boton_mod').click(function () {
-         var numEquipo = document.getElementById("numequipo").value;
-         if (confirm("¿Esta seguro que quiere modificar al equipo " + numEquipo + "?")) {
-             modificaData();
-         }
-     });
-
-     function modificaData() {
-         var numEquipo = document.getElementById("numequipo").value;
-         var id = 0;
-
-         dbref.on('value', snap => {
-             while ((snap.child("team_" + i).val() != null)) {
-                 if (snap.child("team_" + i).child("numEquipo").val() == numEquipo) {
-                     id = i;
-                 }
-                 i++;
-             }
-             i = 1;
-         });
-         if (id > 0) {
-             var nomEquipo = document.getElementById("nomequipo").value;
-             var institucion = document.getElementById("institucion").value;
-             var tiempoTotal = document.getElementById("tiempoTotal").value;
-             var puntajeDiseño = document.getElementById("punDiseño").value;
-             var puntajeConstructor = document.getElementById("punCons").value;
-             var puntajeTiempo = document.getElementById("punTiempo").value;
-             var puntaeDecoracion = document.getElementById("punDec").value;
-             var total = document.getElementById("total").value;
-             var estado = document.getElementById("estado").value;
-             firebase.database().ref('teams/team_' + id).set({
-                 numEquipo: numEquipo,
-                 nomEquipo: nomEquipo,
-                 institucion: institucion,
-                 tiempoTotal: tiempoTotal,
-                 puntajeDiseño: puntajeDiseño,
-                 puntajeConstructor: puntajeConstructor,
-                 puntajeTiempo: puntajeTiempo,
-                 puntajeDecoracion: puntaeDecoracion,
-                 total: total,
-                 estado: estado
-             });
-         }
-     }
-
-     function agregarData() {
-         var numEquipo = document.getElementById("numequipo").value;
-         var nomEquipo = document.getElementById("nomequipo").value;
-         var institucion = document.getElementById("institucion").value;
-         var tiempoTotal = document.getElementById("tiempoTotal").value;
-         var puntajeDiseño = document.getElementById("punDiseño").value;
-         var puntajeConstructor = document.getElementById("punCons").value;
-         var puntajeTiempo = document.getElementById("punTiempo").value;
-         var puntaeDecoracion = document.getElementById("punDec").value;
-         var total = document.getElementById("total").value;
-         var estado = document.getElementById("estado").value;
-
-         firebase.database().ref('teams/team_' + k).set({
-             numEquipo: numEquipo,
-             nomEquipo: nomEquipo,
-             institucion: institucion,
-             tiempoTotal: tiempoTotal,
-             puntajeDiseño: puntajeDiseño,
-             puntajeConstructor: puntajeConstructor,
-             puntajeTiempo: puntajeTiempo,
-             puntajeDecoracion: puntaeDecoracion,
-             total: total,
-             estado: estado
-         });
-         alert("Agregado correctamente");
-     }*/
 });
